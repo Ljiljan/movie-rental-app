@@ -40,5 +40,10 @@ namespace movie_rental_app.Controllers
         {
             return Content("Edit id is " + id);
         }
+
+        public ActionResult ReleaseDateSort(int yr, int mon)
+        {
+            return Content(yr + "/" + mon);
+        }
     }
 }
