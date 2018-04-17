@@ -1,4 +1,4 @@
-﻿@model movie_rental_app.Models.Movie
+﻿@model movie_rental_app.ViewModels.RandomMovieVM
 
 @{
     ViewBag.Title = "Random";
@@ -8,5 +8,7 @@
 <h2>Random</h2>
 
 <ul class="list-group">
-    <li class="list-group-item">@Model.Name</li>
+    <li class="list-group-item">
+        @Model.Movie.Name
+    </li>
 </ul>
