@@ -31,7 +31,7 @@ namespace movie_rental_app.Controllers
 
         public ViewResult Random()
         {
-            var Movies = new Movie() {
+            var Movie = new Movie() {
                 Name = "Goodfather"
             };
 
@@ -44,7 +44,7 @@ namespace movie_rental_app.Controllers
 
             var viewModel = new RandomMovieVM
             {
-                Movie = Movies,
+                Movie = Movie,
                 Customers = customers,
             };
 
