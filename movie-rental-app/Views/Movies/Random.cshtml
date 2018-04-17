@@ -1,12 +1,28 @@
-﻿@model movie_rental_app.Models.Movie
+﻿@model movie_rental_app.ViewModels.RandomMovieVM
 
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Random</h2>
+<h2 class="bg-secondary p-3">Random</h2>
 
-<ul class="list-group">
-    <li class="list-group-item">@Model.Name</li>
-</ul>
+<div class="row">
+    <div class="col-md-4">
+        <h4>Movie title</h4>
+       <ul class="list-group">
+           <li class="list-group-item">
+               @Model.Movie.Name
+           </li>
+       </ul>
+    </div>
+    <div class="col-md-8">
+        <h4>Movie customers <small>(@Model.Movie.Name)</small></h4>
+        <ul class="list-group">
+            @foreach (var customer in Model.Customers)
+            {
+               <li class="list-group-item">@customer.Name</li>
+            }
+        </ul>
+    </div>
+</div>
