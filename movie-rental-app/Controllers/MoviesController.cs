@@ -39,7 +39,7 @@ namespace movie_rental_app.Controllers
             {
                 new Customer { Name = "John" },
                 new Customer { Name = "Angela" },
-                new Customer { Name = "Max" },
+                //new Customer { Name = "Max" },
             };
 
             var viewModel = new RandomMovieVM

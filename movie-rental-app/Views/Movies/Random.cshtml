@@ -18,11 +18,18 @@
     </div>
     <div class="col-md-8">
         <h4>Movie customers <small>(@Model.Movie.Name)</small></h4>
-        <ul class="list-group">
+        @if (Model.Customers.Count == 0)
+        {
+            <text>Customers did not rented this movie before</text>
+        }
+
+        else  {
+            <ul class="list-group">
             @foreach (var customer in Model.Customers)
             {
                <li class="list-group-item">@customer.Name</li>
             }
-        </ul>
+            </ul>
+        }
     </div>
 </div>
