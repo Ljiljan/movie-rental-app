@@ -8,7 +8,7 @@ namespace movie_rental_app.ViewModels
 {
     public class RandomMovieVM
     {
-        public Movie Movie { get; set; }
+        public List<Movie> Movies { get; set; }
         public List<Customer> Customers { get; set; }
     }
 }

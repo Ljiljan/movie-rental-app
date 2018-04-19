@@ -14,7 +14,7 @@ namespace movie_rental_app.Controllers
         // GET: Movies
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            Decimal price = 1.2457m;
+            // Decimal price = 1.2457m;
 
             if (!pageIndex.HasValue)
             {
@@ -26,13 +26,28 @@ namespace movie_rental_app.Controllers
                 sortBy = "Name";
             }
 
-            return Content(String.Format("Page index is {0} and sortby value is {1} and price is {2:C2}", pageIndex, sortBy, price));
+            var Movies = new List<Movie>
+            {
+                new Movie { Id = 1, Name = "Goodfellas", Image = "https://images-na.ssl-images-amazon.com/images/I/516I8K7xlsL.jpg" },
+                new Movie { Id = 1, Name = "Lord of War", Image = "https://i.pinimg.com/736x/20/78/32/20783281d5c9213f2d7c75cfc438f0ab--lord-of-war-the-lord.jpg" },
+                new Movie { Id = 1, Name = "Goodfather II", Image = "http://movies.reyfernandes.com.br/capas/4312.jpg" }
+            };
+
+            var viewModel = new RandomMovieVM
+            {
+                Movies = Movies
+            };
+
+
+            return View(viewModel);
+            // return Content(String.Format("Page index is {0} and sortby value is {1} and price is {2:C2}", pageIndex, sortBy, price));
         }
 
         public ViewResult Random()
         {
-            var Movie = new Movie() {
-                Name = "Goodfather"
+            var Movie = new List<Movie>
+            {
+                new Movie { Id = 1, Name = "Goodfather", Image = "http://www.jposter.net/images/products/godfather.jpg" }
             };
 
             var customers = new List<Customer>
@@ -44,7 +59,7 @@ namespace movie_rental_app.Controllers
 
             var viewModel = new RandomMovieVM
             {
-                Movie = Movie,
+                Movies = Movie,
                 Customers = customers,
             };
 
