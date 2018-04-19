@@ -1,0 +1,24 @@
+﻿@model movie_rental_app.ViewModels.RandomMovieVM
+
+@{
+    ViewBag.Title = "Customers Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Customers.Count == 0)
+{
+    <div class="alert alert-info" role="alert">
+        Customers does not exists yet!
+    </div>
+} else  {
+    <h4 class="bg-primary text-white p-2 border-bottom">List of active customers</h4>
+    <ul class="list-group">
+        @foreach (var customer in Model.Customers)
+        {
+        <li class="list-group-item">
+            @customer.Name
+        </li>
+        }
+    </ul>
+}
