@@ -42,7 +42,7 @@ namespace movie_rental_app.Controllers
                 Customers = customers
             };
 
-            if (id > 0 && id < customers.Count)
+            if (id > 0 && id <= customers.Count)
             {
                 return View(viewModel);
             } else
