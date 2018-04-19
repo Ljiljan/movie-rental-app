@@ -28,7 +28,7 @@ namespace movie_rental_app.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             var customers = new List<Customer>
             {
@@ -42,7 +42,13 @@ namespace movie_rental_app.Controllers
                 Customers = customers
             };
 
-            return View(viewModel);
+            if (id > 0 && id < customers.Count)
+            {
+                return View(viewModel);
+            } else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

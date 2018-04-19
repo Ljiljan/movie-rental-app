@@ -5,7 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="bg-secondary p-3">Random</h2>
+@{ 
+    // Class name which display if customers count from model is less than 1
+    // if the value is null, the whole class attribute to html is going to be deleted
+    var ourClass = Model.Customers.Count < 1 ? "bg-secondary p-3" : null;
+}
+
+<h2 class="@ourClass">Random</h2>
 
 <div class="row">
     <div class="col-md-4">
