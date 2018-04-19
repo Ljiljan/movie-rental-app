@@ -15,9 +15,9 @@ namespace movie_rental_app.Controllers
         {
             var customers = new List<Customer>
             {
-                new Customer { Name = "John" },
-                new Customer { Name = "Angela" },
-                new Customer { Name = "Max" },
+                new Customer { Id = 1, Name = "John" },
+                new Customer { Id = 2, Name = "Angela" },
+                new Customer { Id = 3, Name = "Max" },
             };
 
             var viewModel = new RandomMovieVM()
@@ -30,7 +30,19 @@ namespace movie_rental_app.Controllers
 
         public ActionResult Details(int id)
         {
-            return Content("This is a customers detail page!");
+            var customers = new List<Customer>
+            {
+                new Customer { Id = 1, Name = "John" },
+                new Customer { Id = 2, Name = "Angela" },
+                new Customer { Id = 3, Name = "Max" },
+            };
+
+            var viewModel = new RandomMovieVM()
+            {
+                Customers = customers
+            };
+
+            return View(viewModel);
         }
     }
 }
