@@ -197,10 +197,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804200709041_InitModel.cs" />
+    <Compile Include="Migrations\201804200709041_InitModel.Designer.cs">
+      <DependentUpon>201804200709041_InitModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804200721307_AddedSubscribedToNewsletterCustomer.cs" />
+    <Compile Include="Migrations\201804200721307_AddedSubscribedToNewsletterCustomer.Designer.cs">
+      <DependentUpon>201804200721307_AddedSubscribedToNewsletterCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804201223363_AddMembershipType.cs" />
+    <Compile Include="Migrations\201804201223363_AddMembershipType.Designer.cs">
+      <DependentUpon>201804201223363_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804201226161_InsertMembershipType.cs" />
+    <Compile Include="Migrations\201804201226161_InsertMembershipType.Designer.cs">
+      <DependentUpon>201804201226161_InsertMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804201239509_AddedAnnotationsToCustomerName.cs" />
+    <Compile Include="Migrations\201804201239509_AddedAnnotationsToCustomerName.Designer.cs">
+      <DependentUpon>201804201239509_AddedAnnotationsToCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -328,6 +350,23 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804200709041_InitModel.resx">
+      <DependentUpon>201804200709041_InitModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804200721307_AddedSubscribedToNewsletterCustomer.resx">
+      <DependentUpon>201804200721307_AddedSubscribedToNewsletterCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804201223363_AddMembershipType.resx">
+      <DependentUpon>201804201223363_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804201226161_InsertMembershipType.resx">
+      <DependentUpon>201804201226161_InsertMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804201239509_AddedAnnotationsToCustomerName.resx">
+      <DependentUpon>201804201239509_AddedAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
