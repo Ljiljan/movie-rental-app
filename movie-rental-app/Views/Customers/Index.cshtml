@@ -16,7 +16,7 @@
     <ul class="list-group">
         @foreach (var customer in Model.Customers)
         {
-         @Html.ActionLink(customer.Name, "Details/" + customer.Id, "Customers", new object { }, new { @class = "list-group-item" })
+         @Html.ActionLink(customer.Name, "Details/" + customer.Id, "Customers", null, new { @class = "list-group-item" })
         }
     </ul>
 }

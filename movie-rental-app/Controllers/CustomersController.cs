@@ -10,15 +10,23 @@ namespace movie_rental_app.Controllers
 {
     public class CustomersController : Controller
     {
+        // Database Integration
+        private ApplicationDbContext _context;
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John" },
-                new Customer { Id = 2, Name = "Angela" },
-                new Customer { Id = 3, Name = "Max" },
-            };
+            var customers = _context.Customers.ToList();
 
             var viewModel = new RandomMovieVM()
             {
@@ -28,27 +36,11 @@ namespace movie_rental_app.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            var customers = new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John" },
-                new Customer { Id = 2, Name = "Angela" },
-                new Customer { Id = 3, Name = "Max" },
-            };
+            var customers = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            var viewModel = new RandomMovieVM()
-            {
-                Customers = customers
-            };
-
-            if (id > 0 && id <= customers.Count)
-            {
-                return View(viewModel);
-            } else
-            {
-                return RedirectToAction("Index");
-            }
+            return View(customers);
         }
     }
 }
