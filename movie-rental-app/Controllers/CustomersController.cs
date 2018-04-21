@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using movie_rental_app.Models;
 using movie_rental_app.ViewModels;
+using System.Data.Entity; // Include() function support
 
 namespace movie_rental_app.Controllers
 {
@@ -26,19 +27,19 @@ namespace movie_rental_app.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.Membership).ToList();
 
-            var viewModel = new RandomMovieVM()
-            {
-                Customers = customers
-            };
-
-            return View(viewModel);
+            return View(customers);
         }
 
         public ActionResult Details(int id)
         {
             var customers = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customers == null)
+            {
+                return HttpNotFound();
+            }
 
             return View(customers);
         }
