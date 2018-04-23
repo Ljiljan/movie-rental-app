@@ -36,6 +36,18 @@ namespace movie_rental_app.Controllers
             return View(ViewModel);
         }
 
+        // Create Customers Request usind Model binding
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            // Adds customer request to our dbcontext
+            _context.Customers.Add(customer);
+            // Using save function it will save our data to db
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
