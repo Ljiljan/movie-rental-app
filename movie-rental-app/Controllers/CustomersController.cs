@@ -27,7 +27,13 @@ namespace movie_rental_app.Controllers
         // Customers Form Start
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _context.Memberships.ToList();
+            var ViewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(ViewModel);
         }
 
         // GET: Customers
