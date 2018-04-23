@@ -3,13 +3,17 @@
 @{
     ViewBag.Title = "Customer Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var className = Model.Membership.MonthlyDuration == 0 ? "badge badge-info" : "badge badge-success";
 }
 
-<h2>@Model.Name <span class="badge badge-info">@Model.Membership.MembershipName</span></h2>
+<h2>@Model.Name <span class="@className">@Model.Membership.MembershipName</span></h2>
 
 @if (Model.Dob.HasValue)
 {
-    <ul class="list-group">
-        <li class="list-group-item">Date of Birth: @String.Format("{0:dd. MM. yy}", Model.Dob)</li>
-    </ul>
+<div class="card mt-4">
+    <div class="card-body">
+        <strong>Date of Birth</strong>: @String.Format("{0:dd. MM. yy}", Model.Dob)
+    </div>
+</div>
 }

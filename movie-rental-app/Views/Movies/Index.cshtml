@@ -1,22 +1,25 @@
-﻿@model movie_rental_app.ViewModels.RandomMovieVM
+﻿@model IEnumerable<movie_rental_app.Models.Movie>
 
 @{
+
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List of available movies <span class="badge badge-secondary">@Model.Movies.Count</span></h2>
-
 <div class="row mt-3">
-    @foreach (var movie in Model.Movies)
+    @foreach (var movie in Model)
     {
-        <div class="col-sm-4 mb-3">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="@movie.Image" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">@movie.Name</p>
+    <div class="col-sm-4 mb-3">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@movie.Image" alt="Card image cap">
+            <div class="card-body">
+                <div class="card-text">
+                    <h3>@movie.Name</h3>
+                    <p>Genre: @movie.Genre</p>
+                    <p>Released: @String.Format("{0:yyyy}", movie.ReleaseDate)</p>
                 </div>
             </div>
         </div>
+    </div>
     }
 </div>

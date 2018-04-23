@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201804230651020_addDobToCustomer.Designer.cs">
       <DependentUpon>201804230651020_addDobToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804230800320_addPropertiestToMovieClass.cs" />
+    <Compile Include="Migrations\201804230800320_addPropertiestToMovieClass.Designer.cs">
+      <DependentUpon>201804230800320_addPropertiestToMovieClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -387,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804230651020_addDobToCustomer.resx">
       <DependentUpon>201804230651020_addDobToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804230800320_addPropertiestToMovieClass.resx">
+      <DependentUpon>201804230800320_addPropertiestToMovieClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
