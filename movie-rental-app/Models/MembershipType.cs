@@ -11,5 +11,6 @@ namespace movie_rental_app.Models
         public short SignUpFee { get; set; }
         public byte MonthlyDuration { get; set; }
         public byte Discount { get; set; }
+        public string MembershipName { get; set; }
     }
 }

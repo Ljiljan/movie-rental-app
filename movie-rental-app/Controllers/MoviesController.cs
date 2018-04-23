@@ -11,6 +11,20 @@ namespace movie_rental_app.Controllers
     public class MoviesController : Controller
     {
         private string year = DateTime.Now.Year.ToString();
+        // DbContext init
+        public ApplicationDbContext _context;
+
+        // Constructor
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Index(int? pageIndex, string sortBy)
         {
@@ -26,21 +40,9 @@ namespace movie_rental_app.Controllers
                 sortBy = "Name";
             }
 
-            var Movies = new List<Movie>
-            {
-                new Movie { Id = 1, Name = "Goodfellas", Image = "https://images-na.ssl-images-amazon.com/images/I/516I8K7xlsL.jpg" },
-                new Movie { Id = 1, Name = "Lord of War", Image = "https://i.pinimg.com/736x/20/78/32/20783281d5c9213f2d7c75cfc438f0ab--lord-of-war-the-lord.jpg" },
-                new Movie { Id = 1, Name = "Goodfather II", Image = "http://movies.reyfernandes.com.br/capas/4312.jpg" }
-            };
+            var movies = _context.Movies.ToList();
 
-            var viewModel = new RandomMovieVM
-            {
-                Movies = Movies
-            };
-
-
-            return View(viewModel);
-            // return Content(String.Format("Page index is {0} and sortby value is {1} and price is {2:C2}", pageIndex, sortBy, price));
+            return View(movies);
         }
 
         public ViewResult Random()
