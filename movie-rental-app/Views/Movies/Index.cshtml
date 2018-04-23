@@ -14,9 +14,11 @@
             <img class="card-img-top" src="@movie.Image" alt="Card image cap">
             <div class="card-body">
                 <div class="card-text">
-                    <h3>@movie.Name</h3>
-                    <p>Genre: @movie.Genre</p>
-                    <p>Released: @String.Format("{0:yyyy}", movie.ReleaseDate)</p>
+                    @Html.ActionLink(movie.Name, "Details/" + movie.Id, new object { }, new { @class = "h3"})
+                    <p class="mt-3">
+                        Genre: @movie.Genre<br>
+                        Release Date: @String.Format("{0:yyyy}", movie.ReleaseDate)
+                    </p>
                 </div>
             </div>
         </div>
