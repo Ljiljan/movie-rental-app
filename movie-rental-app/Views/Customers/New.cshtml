@@ -1,0 +1,26 @@
+﻿@model movie_rental_app.Models.Customer
+
+@{
+    ViewBag.Title = "Add new customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+
+@using (Html.BeginForm("Create", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(mod => mod.Name)
+        @Html.TextBoxFor(mod => mod.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(mod => mod.Dob)
+        @Html.TextBoxFor(mod => mod.Dob, new { @class = "form-control" })
+    </div>
+
+    <div class="form-check">
+        @Html.CheckBoxFor(mod => mod.IsSubscribedToNewsletter) Subscribe to our Newsletter!
+    </div>
+}
+

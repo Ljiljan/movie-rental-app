@@ -24,6 +24,12 @@ namespace movie_rental_app.Controllers
             _context.Dispose();
         }
 
+        // Customers Form Start
+        public ActionResult New()
+        {
+            return View();
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
