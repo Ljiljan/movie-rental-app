@@ -17,6 +17,8 @@ namespace movie_rental_app.Models
 
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType Membership { get; set; }
+
+        [Display(Name = "Your Membership")]
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Date of birth!")]

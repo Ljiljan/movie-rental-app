@@ -23,6 +23,7 @@ namespace movie_rental_app.Models
         // DbSet is required for each identity in our app in order to be included in migrations.
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<MembershipType> Memberships { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
