@@ -5,4 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Model.Name
+<h2>@Model.Name <span class="badge badge-info">@Model.Membership.MembershipName</span></h2>
+
+@if (Model.Dob.HasValue)
+{
+    <ul class="list-group">
+        <li class="list-group-item">Date of Birth: @String.Format("{0:dd. MM. yy}", Model.Dob)</li>
+    </ul>
+}
