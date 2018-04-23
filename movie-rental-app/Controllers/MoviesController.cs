@@ -29,7 +29,6 @@ namespace movie_rental_app.Controllers
         public ActionResult Index(int? pageIndex, string sortBy)
         {
             // Decimal price = 1.2457m;
-
             if (!pageIndex.HasValue)
             {
                 pageIndex = 1;
@@ -42,6 +41,12 @@ namespace movie_rental_app.Controllers
 
             var movies = _context.Movies.ToList();
 
+            return View(movies);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movies = _context.Movies.SingleOrDefault(c => c.Id == id);
             return View(movies);
         }
 
