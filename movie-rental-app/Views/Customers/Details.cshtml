@@ -11,13 +11,26 @@
 
 @if (Model.Dob.HasValue)
 {
-<div class="card mt-4">
-    <div class="card-body">
-        <strong>Date of Birth</strong>: @String.Format("{0:dd. MM. yy}", Model.Dob)
+    <div class="card mt-4">
+        <div class="card-body">
+            <strong>Date of Birth</strong>: @String.Format("{0:dd. MM. yy}", Model.Dob)
+        </div>
     </div>
-</div>
+}
+
+@if (Model.IsSubscribedToNewsletter == true)
+{
+    <div class="card mt-1">
+        <div class="card-body">
+            @Model.Name is subscribed to our newsletter!
+        </div>
+    </div>
 }
 
 <button class="btn btn-danger mt-4">
     @Html.ActionLink("Back to Customers", "Index", new object { }, new { @class = "text-white" })
+</button>
+
+<button class="btn btn-warning mt-4">
+    @Html.ActionLink("Edit " + Model.Name, "Edit", "Customers", new { id = Model.Id }, new { @class = "text-white" })
 </button>

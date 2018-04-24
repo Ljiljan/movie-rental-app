@@ -7,7 +7,7 @@
 
 <h2 class="bg-primary p-3 text-white mb-4">New Customer</h2>
 
-@using (Html.BeginForm("Create", "Customers"))
+@using (Html.BeginForm("Save", "Customers"))
 {
     <div class="row">
         <div class="col-sm-6">
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(mod => mod.Customer.Dob)
-                @Html.TextBoxFor(mod => mod.Customer.Dob, new { @class = "form-control" })
+                @Html.TextBoxFor(mod => mod.Customer.Dob, "{0:d MMM yyyy}" , new { @class = "form-control" })
             </div>
         </div>
 
@@ -30,7 +30,7 @@
             <div class="form-check mb-2">
                 @Html.CheckBoxFor(mod => mod.Customer.IsSubscribedToNewsletter) Subscribe to our Newsletter!
             </div>
-
+            @Html.HiddenFor(mod => mod.Customer.Id)
             <button type="submit" class="btn btn-primary">
                 Save Customer
             </button>
