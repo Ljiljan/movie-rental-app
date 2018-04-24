@@ -30,18 +30,46 @@ namespace movie_rental_app.Controllers
             var membershipTypes = _context.Memberships.ToList();
             var ViewModel = new NewCustomerViewModel
             {
-                MembershipTypes = membershipTypes
+                MembershipTypes = membershipTypes,
             };
 
-            return View(ViewModel);
+            return View("New", ViewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            var ViewModel = new NewCustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.Memberships.ToList(),
+            };
+
+            return View("New", ViewModel);
         }
 
         // Create Customers Request usind Model binding
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            // Adds customer request to our dbcontext
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+            {
+                // Adds customer request to our dbcontext
+                _context.Customers.Add(customer);
+            } else
+            {
+                var existingCustomer = _context.Customers.Single(c => c.Id == customer.Id);
+
+                existingCustomer.Name = customer.Name;
+                existingCustomer.Dob = customer.Dob;
+                existingCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                existingCustomer.MembershipTypeId = customer.MembershipTypeId;
+            }
+
             // Using save function it will save our data to db
             _context.SaveChanges();
 
