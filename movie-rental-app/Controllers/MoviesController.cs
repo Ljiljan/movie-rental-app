@@ -50,29 +50,6 @@ namespace movie_rental_app.Controllers
             return View(movies);
         }
 
-        public ViewResult Random()
-        {
-            var Movie = new List<Movie>
-            {
-                new Movie { Id = 1, Name = "Goodfather", Image = "http://www.jposter.net/images/products/godfather.jpg" }
-            };
-
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "John" },
-                new Customer { Name = "Angela" },
-                //new Customer { Name = "Max" },
-            };
-
-            var viewModel = new RandomMovieVM
-            {
-                Movies = Movie,
-                Customers = customers,
-            };
-
-            return View(viewModel);
-        }
-
         public ActionResult Edit(int id)
         {
             return Content("Edit id is " + id);
