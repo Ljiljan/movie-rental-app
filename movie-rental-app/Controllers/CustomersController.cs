@@ -47,6 +47,7 @@ namespace movie_rental_app.Controllers
             {
                 Customer = customer,
                 MembershipTypes = _context.Memberships.ToList(),
+                WebsiteTitle = "Editing customer " + customer.Name,
             };
 
             return View("New", ViewModel);
