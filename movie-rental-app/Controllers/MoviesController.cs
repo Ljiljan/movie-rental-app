@@ -89,6 +89,30 @@ namespace movie_rental_app.Controllers
             return View("New", viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Save(MovieViewModel movie)
+        {
+            if (movie.Movies.Id == 0)
+            {
+                _context.Movies.Add(movie.Movies);
+            }
+            else
+            {
+                var existingMovie = _context.Movies.Single(c => c.Id == movie.Movies.Id);
+
+                existingMovie.Name = movie.Movies.Name;
+                existingMovie.Image = movie.Movies.Image;
+                existingMovie.Quantity = movie.Movies.Quantity;
+                existingMovie.ReleaseDate = movie.Movies.ReleaseDate;
+                existingMovie.DateAdded = DateTime.Now.ToUniversalTime();
+                existingMovie.Genre = movie.Movies.Genre;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
         [Route("movies/release/{yr:regex(\\d{4}):min(1900)}/{mon:regex(\\d{2}):range(1, 12)}")]
         public ActionResult ReleaseDateSort(int yr, int mon)
         {
