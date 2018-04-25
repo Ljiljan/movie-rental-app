@@ -10,9 +10,9 @@ namespace movie_rental_app.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Your Full Name")]
+        [Required(ErrorMessage = "Please enter your name!")]
+        [StringLength(maximumLength: 100, MinimumLength = 3)]
+        [Display(Name = "Enter your name")]
         public string Name { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }

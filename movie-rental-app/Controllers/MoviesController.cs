@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using movie_rental_app.Models;
 using movie_rental_app.ViewModels;
+using System.Data.Entity.Validation; // Add validation exception
 
 namespace movie_rental_app.Controllers
 {
@@ -39,7 +40,7 @@ namespace movie_rental_app.Controllers
                 sortBy = "Name";
             }
 
-            var movies = _context.Movies.ToList();
+            var movies = _context.Movies.OrderByDescending(m => m.Quantity).ToList();
 
             return View(movies);
         }
@@ -111,7 +112,15 @@ namespace movie_rental_app.Controllers
                 existingMovie.Genre = movie.Movies.Genre;
             }
 
-            _context.SaveChanges();
+            // Using the try-catch we can catch the exception
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException err)
+            {
+                Console.WriteLine(err);
+            }
 
             return RedirectToAction("Index", "Movies");
         }
