@@ -72,12 +72,21 @@ namespace movie_rental_app.Controllers
         {
             var movies = _context.Movies.Single(c => c.Id == id);
 
+            var moviesList = _context.Movies.ToList();
+            var genres = new List<string>();
+
+            foreach (var mov in moviesList)
+            {
+                genres.Add(mov.Genre);
+            }
+
             var viewModel = new MovieViewModel
             {
-                Movies = movies
+                Movies = movies,
+                Genres = genres
             };
 
-            return Content("Edit id is " + movies.Name + " with id " + movies.Id);
+            return View("New", viewModel);
         }
 
         [Route("movies/release/{yr:regex(\\d{4}):min(1900)}/{mon:regex(\\d{2}):range(1, 12)}")]
