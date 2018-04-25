@@ -39,7 +39,7 @@ namespace movie_rental_app.Controllers
                 sortBy = "Name";
             }
 
-            var movies = _context.Movies.ToList();
+            var movies = _context.Movies.OrderByDescending(c => c.Quantity).ToList();
 
             return View(movies);
         }
