@@ -21,5 +21,8 @@
         <button class="btn btn-danger mt-4">
             @Html.ActionLink("Back to Movies", "Index", new object { }, new { @class = "text-white" })
         </button>
+        <button class="btn btn-primary mt-4">
+            @Html.ActionLink("Edit " + Model.Name, "Edit/" + Model.Id, new object { }, new { @class = "text-white" })
+        </button>
     </div>
 </div>

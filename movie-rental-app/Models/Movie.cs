@@ -15,12 +15,14 @@ namespace movie_rental_app.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Cover image URL")]
         public string Image { get; set; }
 
         [Required]
         public string Genre { get; set; }
 
         [Required]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         [Required]

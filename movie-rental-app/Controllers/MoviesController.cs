@@ -50,9 +50,34 @@ namespace movie_rental_app.Controllers
             return View(movies);
         }
 
+        public ActionResult New()
+        {
+            var movies = _context.Movies.ToList();
+            var genres = new List<string>();
+
+            foreach (var mov in movies)
+            {
+                genres.Add(mov.Genre);
+            }
+
+            var viewModel = new MovieViewModel
+            {
+                Genres = genres,
+            };
+
+            return View("New", viewModel);
+        }
+
         public ActionResult Edit(int id)
         {
-            return Content("Edit id is " + id);
+            var movies = _context.Movies.Single(c => c.Id == id);
+
+            var viewModel = new MovieViewModel
+            {
+                Movies = movies
+            };
+
+            return Content("Edit id is " + movies.Name + " with id " + movies.Id);
         }
 
         [Route("movies/release/{yr:regex(\\d{4}):min(1900)}/{mon:regex(\\d{2}):range(1, 12)}")]
