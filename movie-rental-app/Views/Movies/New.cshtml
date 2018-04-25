@@ -1,9 +1,19 @@
 ﻿@model movie_rental_app.ViewModels.MovieViewModel
 
 @{
-    ViewBag.Title = "Add a new movie";
+    if (!Model.WebsiteTitle.IsEmpty())
+    {
+        ViewBag.Title = Model.WebsiteTitle;
+    }
+    else
+    {
+        ViewBag.Title = "Add new customer";
+    }
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2 class="bg-primary p-3 text-white mb-4">@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Save", "Movies"))
 {

@@ -11,5 +11,6 @@ namespace movie_rental_app.ViewModels
         public Movie Movies { get; set; }
         public Customer Customers { get; set; }
         public List<string> Genres { get; set; }
+        public string WebsiteTitle { get; set; }
     }
 }

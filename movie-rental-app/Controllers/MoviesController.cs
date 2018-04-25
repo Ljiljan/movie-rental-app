@@ -53,16 +53,17 @@ namespace movie_rental_app.Controllers
         public ActionResult New()
         {
             var movies = _context.Movies.ToList();
-            var genres = new List<string>();
-
-            foreach (var mov in movies)
+            var genres = new List<string>
             {
-                genres.Add(mov.Genre);
-            }
+                "Romance",
+                "Action",
+                "War"
+            };
 
             var viewModel = new MovieViewModel
             {
                 Genres = genres,
+                WebsiteTitle = "Add New Movie"
             };
 
             return View("New", viewModel);
@@ -73,17 +74,18 @@ namespace movie_rental_app.Controllers
             var movies = _context.Movies.Single(c => c.Id == id);
 
             var moviesList = _context.Movies.ToList();
-            var genres = new List<string>();
-
-            foreach (var mov in moviesList)
+            var genres = new List<string>
             {
-                genres.Add(mov.Genre);
-            }
+                "Romance",
+                "Action",
+                "War"
+            };
 
             var viewModel = new MovieViewModel
             {
                 Movies = movies,
-                Genres = genres
+                Genres = genres,
+                WebsiteTitle = "Edit " + movies.Name + " Movie",
             };
 
             return View("New", viewModel);
@@ -94,6 +96,7 @@ namespace movie_rental_app.Controllers
         {
             if (movie.Movies.Id == 0)
             {
+                movie.Movies.DateAdded = DateTime.Now.ToUniversalTime();
                 _context.Movies.Add(movie.Movies);
             }
             else
