@@ -30,6 +30,7 @@ namespace movie_rental_app.Controllers
             var membershipTypes = _context.Memberships.ToList();
             var ViewModel = new NewCustomerViewModel
             {
+                Customer = new Customer(), // Initialize new customer creation with default ID and other properties.
                 MembershipTypes = membershipTypes,
             };
 
