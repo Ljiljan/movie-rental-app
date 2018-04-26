@@ -30,6 +30,7 @@ namespace movie_rental_app.Controllers
             var membershipTypes = _context.Memberships.ToList();
             var ViewModel = new NewCustomerViewModel
             {
+                Customer = new Customer(), // Initialize new customer creation with default ID and other properties.
                 MembershipTypes = membershipTypes,
             };
 
@@ -55,6 +56,7 @@ namespace movie_rental_app.Controllers
 
         // Create Customers Request usind Model binding
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             // Validation example

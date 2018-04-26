@@ -82,9 +82,8 @@ namespace movie_rental_app.Controllers
                 "War"
             };
 
-            var viewModel = new MovieViewModel
+            var viewModel = new MovieViewModel(movies)
             {
-                Movies = movies,
                 Genres = genres,
                 WebsiteTitle = "Edit " + movies.Name + " Movie",
             };
@@ -93,23 +92,24 @@ namespace movie_rental_app.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(MovieViewModel movie)
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie movie)
         {
-            if (movie.Movies.Id == 0)
+            if (movie.Id == 0)
             {
-                movie.Movies.DateAdded = DateTime.Now.ToUniversalTime();
-                _context.Movies.Add(movie.Movies);
+                movie.DateAdded = DateTime.Now.ToUniversalTime();
+                _context.Movies.Add(movie);
             }
             else
             {
-                var existingMovie = _context.Movies.Single(c => c.Id == movie.Movies.Id);
+                var existingMovie = _context.Movies.Single(c => c.Id == movie.Id);
 
-                existingMovie.Name = movie.Movies.Name;
-                existingMovie.Image = movie.Movies.Image;
-                existingMovie.Quantity = movie.Movies.Quantity;
-                existingMovie.ReleaseDate = movie.Movies.ReleaseDate;
+                existingMovie.Name = movie.Name;
+                existingMovie.Image = movie.Image;
+                existingMovie.Quantity = movie.Quantity;
+                existingMovie.ReleaseDate = movie.ReleaseDate;
                 existingMovie.DateAdded = DateTime.Now.ToUniversalTime();
-                existingMovie.Genre = movie.Movies.Genre;
+                existingMovie.Genre = movie.Genre;
             }
 
             // Using the try-catch we can catch the exception
