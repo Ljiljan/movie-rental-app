@@ -11,7 +11,7 @@ namespace movie_rental_app.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please enter your name!")]
-        [StringLength(maximumLength: 100, MinimumLength = 3)]
+        [StringLength(maximumLength: 100, MinimumLength = 3, ErrorMessage = "Name length is not valid")]
         [Display(Name = "Enter your name")]
         public string Name { get; set; }
 
@@ -22,6 +22,7 @@ namespace movie_rental_app.Models
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Date of birth!")]
+        [AdultCheckVal]
         public DateTime? Dob { get; set; }
     }
 }
