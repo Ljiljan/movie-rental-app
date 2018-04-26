@@ -56,6 +56,7 @@ namespace movie_rental_app.Controllers
 
         // Create Customers Request usind Model binding
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             // Validation example
