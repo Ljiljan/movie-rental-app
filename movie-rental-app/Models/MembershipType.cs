@@ -12,5 +12,9 @@ namespace movie_rental_app.Models
         public byte MonthlyDuration { get; set; }
         public byte Discount { get; set; }
         public string MembershipName { get; set; }
+
+        // Magic numbers used for validation purpuses
+        public static readonly byte Unknown = 0;
+        public static readonly byte PayAsGo = 1;
     }
 }
