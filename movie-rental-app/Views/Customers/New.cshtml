@@ -21,6 +21,7 @@
             <div class="form-group">
                 @Html.LabelFor(mod => mod.Customer.Name)
                 @Html.TextBoxFor(mod => mod.Customer.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(mod => mod.Customer.Name, "Entered Name is not valid!", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">

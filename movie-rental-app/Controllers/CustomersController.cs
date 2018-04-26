@@ -57,6 +57,18 @@ namespace movie_rental_app.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            // Validation example
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new NewCustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.Memberships.ToList()
+                };
+
+                return View("New", viewModel);
+            };
+
             if (customer.Id == 0)
             {
                 // Adds customer request to our dbcontext
