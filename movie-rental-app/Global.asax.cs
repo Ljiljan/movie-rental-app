@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using movie_rental_app.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,7 @@ namespace movie_rental_app
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(conf => conf.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
