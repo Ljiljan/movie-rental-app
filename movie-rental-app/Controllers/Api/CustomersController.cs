@@ -1,4 +1,6 @@
-﻿using movie_rental_app.Models;
+﻿using AutoMapper;
+using movie_rental_app.DataTransfer;
+using movie_rental_app.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +20,20 @@ namespace movie_rental_app.Controllers.Api
         }
 
         // GET /api/customers
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
         }
 
         // GET /api/customers/:id
-        public Customer GetCustomer(int id)
+        public CustomerDto GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return customer;
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
 
         // POST /api/customers/
@@ -49,7 +51,7 @@ namespace movie_rental_app.Controllers.Api
 
         // PUT /api/customers/:id
         [HttpPut]
-        public void UpdateCustomer(int id, Customer customer)
+        public void UpdateCustomer(int id, CustomerDto customer)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -59,10 +61,13 @@ namespace movie_rental_app.Controllers.Api
             if (existingCustomer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            existingCustomer.Name = customer.Name;
-            existingCustomer.Dob = customer.Dob;
-            existingCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-            existingCustomer.MembershipTypeId = customer.MembershipTypeId;
+            Mapper.Map(customer, existingCustomer);
+
+            // Old approach without mapper
+            // existingCustomer.Name = customer.Name;
+            // existingCustomer.Dob = customer.Dob;
+            // existingCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            // existingCustomer.MembershipTypeId = customer.MembershipTypeId;
 
             _context.SaveChanges();
         }
