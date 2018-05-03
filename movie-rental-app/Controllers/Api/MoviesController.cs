@@ -64,7 +64,6 @@ namespace movie_rental_app.Controllers.Api
             if (Movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            new Movie();
             Mapper.Map(movie, Movie);
 
             _context.SaveChanges();

@@ -8,8 +8,7 @@ namespace movie_rental_app.DataTransfer
 {
     public class MovieDto
     {
-        [Required]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         public string Name { get; set; }

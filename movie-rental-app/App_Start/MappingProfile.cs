@@ -12,8 +12,16 @@ namespace movie_rental_app.App_Start
     {
         public MappingProfile()
         {
-            CreateMap<Customer, CustomerDto>();
+            // ForMember function to exclude ID in mapping with Automapper
+            CreateMap<Customer, CustomerDto>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+
             CreateMap<CustomerDto, Customer>();
+
+            CreateMap<Movie, MovieDto>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
+
+            CreateMap<MovieDto, Movie>();
         }
     }
 }
