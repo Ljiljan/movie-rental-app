@@ -19,7 +19,7 @@ namespace movie_rental_app.DataTransfer
 
         public byte MembershipTypeId { get; set; }
 
-        [AdultCheckVal]
+        // [AdultCheckVal]
         public DateTime? Dob { get; set; }
     }
 }
