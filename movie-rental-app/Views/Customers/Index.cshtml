@@ -46,18 +46,31 @@ else
         $(document).ready(function () { 
             $("#customers .cust-delete").on("click", function () {
                 var btn = $(this);
-                if (confirm("Are you sure you want to delete this customer?")) {
-                    $.ajax({
-                        url: "/api/customers/" + btn.attr("data-cust-id"),
-                        method: "DELETE",
-                        success: function () {
-                            btn.parents("tr").remove();
+                bootbox.confirm({
+                    message: "Are you sure you want to delete this customer?",
+                    buttons: {
+                        confirm: {
+                            label: "YES, Delete!",
+                            className: "btn btn-danger"
+                        },
+
+                        cancel: {
+                            label: "NO!",
+                            className: "btn btn-success"
                         }
-                    })
-                }
-                else {
-                    console.log("Action not allowed!");
-                }
+                    },
+                    callback: (result) => {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + btn.attr("data-cust-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    btn.parents("tr").remove();
+                                }
+                            })
+                        }
+                    }
+                })
             })
         })
     </script>
